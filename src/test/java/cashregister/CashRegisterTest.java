@@ -2,6 +2,7 @@ package cashregister;
 
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -47,9 +48,16 @@ public class CashRegisterTest {
 
     @Test
     public void should_verify_with_process_call_with_mockito() {
-        //given
+    	//given
+        Printer printer = Mockito.mock(Printer.class);
+        Purchase purchase = Mockito.mock(Purchase.class);
+        Mockito.when(purchase.asString()).thenReturn("test product");
         //when
+        CashRegister cashRegister = new CashRegister(printer);
+        cashRegister.process(purchase);
         //then
+        Mockito.verify(printer).print("test product");
+       }
     }
 
 }
