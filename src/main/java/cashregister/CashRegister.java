@@ -7,6 +7,7 @@ class CashRegister {
     public CashRegister(Printer printer) {
         this.printer = printer;
     }
+    
 
     public void process(Purchase purchase) {
         printer.print(purchase.asString());
